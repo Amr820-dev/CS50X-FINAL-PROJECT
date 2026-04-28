@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block title %}
+New Cars
+{% endblock %}
+
+{% block content %}
+<h2>New Cars</h2>
+
+<p>Explore our latest collection of new cars available for purchase.</p>
+
+<div class="cars-list">
+
+    <div class="car">
+        <img src="/static/images/car1.jpg" alt="Car 1">
+        <h3>Car Model 1</h3>
+        <p>Price: $25,000</p>
+        <a href="{{ url_for('new_car_details', car_id=1) }}">View Details</a>
+    </div>
+
+    <div class="car">
+        <img src="/static/images/car2.jpg" alt="Car 2">
+        <h3>Car Model 2</h3>
+        <p>Price: $30,000</p>
+        <a href="{{ url_for('new_car_details', car_id=2) }}">View Details</a>
+    </div>
+
+    <div class="car">
+        <img src="/static/images/car3.jpg" alt="Car 3">
+        <h3>Car Model 3</h3>
+        <p>Price: $28,000</p>
+        <a href="{{ url_for('new_car_details', car_id=3) }}">View Details</a>
+    </div>
+
+</div>
+{% endblock %}

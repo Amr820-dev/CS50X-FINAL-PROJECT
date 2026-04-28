@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Buy with Installments
+{% endblock %}
+
+{% block content %}
+<h2>Buy Car with Installments</h2>
+
+<div class="car-summary">
+    {% if car.image %}
+      <img src="{{ url_for('static', filename='images/uploads/' ~ car.image) }}" alt="Selected Car" width="300">
+    {% else %}
+      <img src="{{ url_for('static', filename='images/car1.jpg') }}" alt="Selected Car" width="300">
+    {% endif %}
+    <h3>{{ car.title or (car.brand ~ ' ' ~ car.year) }}</h3>
+    <p><strong>Brand:</strong> {{ car.brand }}</p>
+    <p><strong>Year:</strong> {{ car.year }}</p>
+    <p><strong>Price:</strong> {{ car.price }}</p>
+</div>
+
+<hr>
+
+<h3>Installment Plan</h3>
+
+<form action="{{ url_for('buy_installment', car_id=car.id) }}" method="post" class="installment-form">
+    <label for="name">Full Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email Address:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="phone">Phone Number:</label><br>
+    <input type="tel" id="phone" name="phone" required><br><br>
+
+    <label for="address">Delivery Address:</label><br>
+    <textarea id="address" name="address" rows="3" required></textarea><br><br>
+
+    <label for="down_payment">Down Payment ($):</label><br>
+    <input type="number" id="down_payment" name="down_payment" min="0" required><br><br>
+
+    <label for="installment_period">Installment Period (Months):</label><br>
+    <select id="installment_period" name="installment_period" required>
+        <option value="">-- Select Period --</option>
+        <option value="12">12 Months</option>
+        <option value="24">24 Months</option>
+        <option value="36">36 Months</option>
+        <option value="48">48 Months</option>
+    </select><br><br>
+
+    <button type="submit" class="btn">Confirm Installment Plan</button>
+</form>
+
+<hr>
+
+<div class="example">
+    <h4>Example:</h4>
+    <p>For example, if the car price is <strong>${{ car.price }}</strong> and you pay a down payment of <strong>$5,000</strong>,</p>
+    <p>then the remaining <strong>${{ (car.price - 5000) if car.price else '' }}</strong> can be paid over <strong>24 months</strong>.</p>
+    <p>That means you’ll pay around <strong>${{ ((car.price - 5000)/24) | round(2) if car.price else '' }} per month</strong> approximately.</p>
+</div>
+
+{% endblock %}

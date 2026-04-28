@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %}Thank You{% endblock %}
+
+{% block content %}
+<div class="thank-you-container">
+    <h1>شكراً لشرائك من Auto Market 🚗</h1>
+    <p>طلبك تم استلامه بنجاح، وهنتواصل معاك قريب لتأكيد التفاصيل.</p>
+
+    <div class="actions">
+        <a href="{{ url_for('index') }}" class="btn">العودة للصفحة الرئيسية</a>
+        <a href="{{ url_for('new_cars') }}" class="btn">تصفح سيارات جديدة</a>
+    </div>
+</div>
+{% endblock %}

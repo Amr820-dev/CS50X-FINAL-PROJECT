@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block title %}تم استلام الطلب — شكراً{% endblock %}
+
+{% block content %}
+<div class="thank-you-driving container">
+    <h1>✅ تم استلام طلبك بنجاح!</h1>
+
+    <p>شكراً يا <strong>{{ name if name else "عميلنا" }}</strong> — تم استلام طلبك لحجز:</p>
+
+    <div class="booking-summary">
+        <p><strong>الخدمة / الباقة:</strong> {{ service_label if service_label else service }}</p>
+        {% if preferred_date %}
+        <p><strong>تاريخ البدء المفضّل:</strong> {{ preferred_date }}</p>
+        {% endif %}
+        {% if location %}
+        <p><strong>الفرع / الموقع المفضّل:</strong> {{ location }}</p>
+        {% endif %}
+        {% if phone %}
+        <p><strong>رقم التواصل:</strong> {{ phone }}</p>
+        {% endif %}
+    </div>
+
+    <p>سيتواصل معك أحد ممثلي الخدمة خلال 24 ساعة لتأكيد الموعد وتفاصيل الدفع (أو أسرع حسب توافر الفرق).</p>
+
+    <div class="actions" style="margin-top:20px;">
+        <a class="btn" href="{{ url_for('index') }}">العودة للرئيسية</a>
+        <a class="btn" href="{{ url_for('driving_lessons_and_licenses') }}">حجز خدمة أخرى</a>
+        <a class="btn" href="tel:19999">اتصل بخدمة العملاء: 19999</a>
+    </div>
+
+    <hr style="margin:20px 0;">
+
+    <div class="note">
+        <p><small>ملاحظة: احتفظ برقم التواصل الخاص بك متاحاً — قد يحتاج المندوب بعض التفاصيل الإضافية قبل تأكيد الموعد.</small></p>
+    </div>
+</div>
+{% endblock %}

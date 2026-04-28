@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}Your Car Selling Post{% endblock %}
+
+{% block content %}
+<div class="your-car-post-container">
+    <h1>إعلان عربيتك 🚗</h1>
+    <p>تم نشر إعلانك بنجاح! دي تفاصيل الإعلان:</p>
+
+    <div class="car-details">
+        <p><strong>الماركة:</strong> {{ brand }}</p>
+        <p><strong>الموديل:</strong> {{ model }}</p>
+        <p><strong>السنة:</strong> {{ year }}</p>
+        <p><strong>عدد الكيلومترات:</strong> {{ mileage }} كم</p>
+        <p><strong>السعر المطلوب:</strong> {{ price }} جنيه</p>
+
+        {% if image_url %}
+        <div class="car-image">
+            <img src="{{ image_url }}" alt="Car Image">
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="actions">
+        <a href="{{ url_for('index') }}" class="btn">العودة للرئيسية</a>
+        <a href="{{ url_for('sell_your_car') }}" class="btn">إضافة إعلان جديد</a>
+    </div>
+</div>
+{% endblock %}

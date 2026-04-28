@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}Service Booking Confirmed{% endblock %}
+
+{% block content %}
+<div class="thank-you-service">
+    <h1>✅ تم حجز الصيانة بنجاح!</h1>
+    <p>شكراً يا {{ name }}، تم استلام طلبك لصيانة سيارتك <strong>{{ car_model }}</strong>.</p>
+
+    <div class="details">
+        <p><strong>نوع الصيانة:</strong> صيانة {{ service_type }} كم</p>
+        <p><strong>تاريخ الحجز:</strong> {{ preferred_date }}</p>
+        <p><strong>رقم التواصل:</strong> {{ phone }}</p>
+    </div>
+
+    <p>سيتواصل معك أحد ممثلي الخدمة لتأكيد الموعد في أقرب وقت ممكن.</p>
+
+    <div class="actions">
+        <a href="{{ url_for('index') }}" class="btn">العودة للصفحة الرئيسية</a>
+        <a href="{{ url_for('service_maintenance') }}" class="btn">إجراء حجز جديد</a>
+    </div>
+
+    <hr>
+
+    <p class="note">📞 لأي استفسارات، يمكنك التواصل مع خدمة العملاء على رقم <strong>19999</strong></p>
+</div>
+{% endblock %}

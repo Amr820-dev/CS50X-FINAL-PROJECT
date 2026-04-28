@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{{ car.title if car.title else "Car Details" }}
+{% endblock %}
+
+{% block content %}
+<h2>تفاصيل السيارة</h2>
+
+<div class="car-details card">
+    {% if car.image %}
+        <img src="{{ url_for('static', filename='images/uploads/' ~ car.image) }}" alt="Car Image" style="max-width:100%; border-radius:8px;">
+    {% else %}
+        <img src="{{ url_for('static', filename='images/car1.jpg') }}" alt="Car Image" style="max-width:100%; border-radius:8px;">
+    {% endif %}
+
+    <h3>{{ car.title or (car.brand ~ ' ' ~ car.year) }}</h3>
+    <p><strong>الماركة:</strong> {{ car.brand or '—' }}</p>
+    <p><strong>السنة:</strong> {{ car.year or '—' }}</p>
+    <p><strong>المسافة (كم):</strong> {{ car.km or '—' }}</p>
+    <p><strong>السعر:</strong> {{ car.price or '—' }}</p>
+    <p><strong>الوصف:</strong> {{ car.description or 'لا يوجد وصف متاح.' }}</p>
+
+    <a href="{{ url_for('application_buying_new_car', car_id=car.id) }}" class="btn">اشتري الآن</a>
+</div>
+{% endblock %}

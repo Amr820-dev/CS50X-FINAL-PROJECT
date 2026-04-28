@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Buy New Car
+{% endblock %}
+
+{% block content %}
+<h2>Purchase Options</h2>
+
+<div class="car-summary">
+    {% if car.image %}
+      <img src="{{ url_for('static', filename='images/uploads/' ~ car.image) }}" alt="Selected Car" width="300">
+    {% else %}
+      <img src="{{ url_for('static', filename='images/car1.jpg') }}" alt="Selected Car" width="300">
+    {% endif %}
+    <h3>{{ car.title or (car.brand ~ ' ' ~ car.year) }}</h3>
+    <p><strong>Brand:</strong> {{ car.brand }}</p>
+    <p><strong>Year:</strong> {{ car.year }}</p>
+    <p><strong>Price:</strong> {{ car.price }}</p>
+</div>
+
+<hr>
+
+<h3>Choose Your Payment Method</h3>
+<div class="payment-options">
+    <a href="{{ url_for('buy_cash', car_id=car.id) }}" class="btn">Pay in Cash</a>
+    <a href="{{ url_for('buy_installment', car_id=car.id) }}" class="btn">Installment Plan</a>
+</div>
+
+{% endblock %}

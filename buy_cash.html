@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Buy in Cash
+{% endblock %}
+
+{% block content %}
+<h2>Buy Car in Cash</h2>
+
+<div class="car-summary">
+    {% if car.image %}
+      <img src="{{ url_for('static', filename='images/uploads/' ~ car.image) }}" alt="Selected Car" width="300">
+    {% else %}
+      <img src="{{ url_for('static', filename='images/car1.jpg') }}" alt="Selected Car" width="300">
+    {% endif %}
+    <h3>{{ car.title or (car.brand ~ ' ' ~ car.year) }}</h3>
+    <p><strong>Brand:</strong> {{ car.brand }}</p>
+    <p><strong>Year:</strong> {{ car.year }}</p>
+    <p><strong>Price:</strong> {{ car.price }}</p>
+</div>
+
+<hr>
+
+<h3>Enter Your Details</h3>
+
+<form action="{{ url_for('buy_cash', car_id=car.id) }}" method="post" class="cash-form">
+    <label for="name">Full Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
+
+    <label for="email">Email Address:</label><br>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <label for="phone">Phone Number:</label><br>
+    <input type="tel" id="phone" name="phone" required><br><br>
+
+    <label for="address">Delivery Address:</label><br>
+    <textarea id="address" name="address" rows="3" required></textarea><br><br>
+
+    <button type="submit" class="btn">Confirm Purchase</button>
+</form>
+
+{% endblock %}

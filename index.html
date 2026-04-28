@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}الرئيسية - Auto Market{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-inner container">
+        <h1>أهلاً بيك في Auto Market</h1>
+        <p>ابحث، قارن، واعرض عربيتك بسهولة.</p>
+
+        <!-- Search form -->
+        <form action="{{ url_for('index') }}" method="GET" class="search-form">
+            <input type="text" name="q" placeholder="ابحث عن موديل، ماركة أو سنة..." value="{{ request.args.get('q', '') }}">
+            <select name="type">
+                <option value="">الكل</option>
+                <option value="new">جديدة</option>
+                <option value="used">مستعملة</option>
+            </select>
+            <button type="submit" class="btn">ابحث</button>
+        </form>
+    </div>
+</section>
+
+<!-- Featured new cars -->
+<section class="section container">
+    <h2>أحدث العربيات</h2>
+    <div class="cards-grid">
+        {% if new_cars %}
+            {% for car in new_cars %}
+            <article class="card">
+                <a href="{{ url_for('new_car_details', car_id=car.id) }}">
+                    <img src="{{ url_for('static', filename='images/uploads/' ~ (car.image or 'placeholder.jpg')) }}" alt="{{ car.title }}">
+                </a>
+                <div class="card-body">
+                    <h3>{{ car.title }}</h3>
+                    <p class="price">{{ car.price }} EGP</p>
+                    <p class="meta">{{ car.year }} • {{ car.km }} كم</p>
+                    <a class="btn small" href="{{ url_for('new_car_details', car_id=car.id) }}">تفاصيل</a>
+                </div>
+            </article>
+            {% endfor %}
+        {% else %}
+            <p>لا توجد سيارات جديدة حالياً.</p>
+        {% endif %}
+    </div>
+</section>
+
+<!-- Used cars / price guide -->
+<section class="section container">
+    <h2>أسعار المستعملة</h2>
+    <p>اطلع على متوسط أسعار السوق واستخدم أدوات المقارنة.</p>
+    <a class="btn" href="{{ url_for('used_cars_prices') }}">عرض الأسعار</a>
+</section>
+
+<!-- Sell / Post -->
+<section class="section container">
+    <div class="two-cols">
+        <div>
+            <h3>عايز تعرض عربيتك؟</h3>
+            <p>انشر إعلانك بسرعة وبمجموعة صور.</p>
+            <a class="btn" href="{{ url_for('sell_your_car') }}">انشر إعلان</a>
+        </div>
+        <div>
+            <h3>خدمات وصيانة</h3>
+            <p>اعثر على مراكز صيانة ووكلاء معتمدين.</p>
+            <a class="btn" href="{{ url_for('service_maintenance') }}">اعرف أكتر</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+

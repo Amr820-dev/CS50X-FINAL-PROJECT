@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% block title %}Sell Your Car{% endblock %}
+
+{% block content %}
+<div class="sell-car-container">
+    <h1>اعرض عربيتك للبيع 🚘</h1>
+    <p>املأ البيانات التالية علشان نقدر نقيّم عربيتك ونعرضها في السوق.</p>
+
+    <form method="POST" enctype="multipart/form-data" class="sell-car-form">
+        <label for="brand">الماركة:</label>
+        <input type="text" id="brand" name="brand" placeholder="مثال: Hyundai" required>
+
+        <label for="model">الموديل:</label>
+        <input type="text" id="model" name="model" placeholder="مثال: Elantra" required>
+
+        <label for="year">السنة:</label>
+        <input type="number" id="year" name="year" placeholder="مثال: 2020" required>
+
+        <label for="mileage">عدد الكيلومترات:</label>
+        <input type="number" id="mileage" name="mileage" placeholder="مثال: 45000" required>
+
+        <label for="price">السعر المطلوب (جنيه):</label>
+        <input type="number" id="price" name="price" placeholder="مثال: 550000" required>
+
+        <label for="image">صورة السيارة:</label>
+        <input type="file" id="image" name="image" accept="image/*">
+
+        <button type="submit">إرسال الإعلان</button>
+    </form>
+</div>
+{% endblock %}

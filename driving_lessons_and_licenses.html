@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+
+{% block title %}دروس السواقة والرخص{% endblock %}
+
+{% block content %}
+<div class="driving-container">
+    <h1>دروس السواقة واستخراج الرخص 🚦</h1>
+    <p>اختار الباقة أو الخدمة اللي تناسبك — دروس تدريب، تجهيز لاختبار الرخصة، أو خدمات استخراج الرخصة.</p>
+
+    <!-- معلومات عامة / باقات -->
+    <section class="packages">
+        <h2>الباقات المتوفرة</h2>
+        <ul>
+            <li><strong>باقة مبتدئ (8 جلسات)</strong> — تدريب عملي أساسيات القيادة + اختبارات محاكاة.</li>
+            <li><strong>باقة متوسط (12 جلسة)</strong> — تدريب عملي + مهارات مرور متقدمة.</li>
+            <li><strong>باقة اختبار الرخصة</strong> — تجهيز كامل لاختبار المرور (نصائح ومناورات).</li>
+            <li><strong>خدمة استخراج رخصة</strong> — إرشاد وإجراءات إدارية مقابل رسوم.</li>
+        </ul>
+    </section>
+
+    <hr>
+
+    <!-- فورم الحجز -->
+    <section class="booking">
+        <h2>احجز درس / خدمة</h2>
+        <form action="{{ url_for('driving_lessons_and_licenses') }}" method="POST" class="booking-form">
+            <label for="name">الاسم الكامل:</label>
+            <input type="text" id="name" name="name" placeholder="مثال: أحمد محمد" required>
+
+            <label for="phone">رقم الموبايل:</label>
+            <input type="tel" id="phone" name="phone" placeholder="مثال: 01012345678" required>
+
+            <label for="service">اختر الخدمة / الباقة:</label>
+            <select id="service" name="service" required>
+                <option value="">اختر الباقة</option>
+                <option value="beginner_8">باقة مبتدئ — 8 جلسات</option>
+                <option value="intermediate_12">باقة متوسط — 12 جلسة</option>
+                <option value="test_prep">باقة تجهيز لاختبار الرخصة</option>
+                <option value="license_processing">خدمة استخراج رخصة</option>
+            </select>
+
+            <label for="preferred_date">تاريخ مفضّل للبدء:</label>
+            <input type="date" id="preferred_date" name="preferred_date" required>
+
+            <label for="location">الموقع / الفرع المفضّل:</label>
+            <input type="text" id="location" name="location" placeholder="مثال: فرع الزمالك" required>
+
+            <label for="notes">ملاحظات إضافية (اختياري):</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="مثال: أريد مدرب يتكلم إنجليزي"></textarea>
+
+            <button type="submit" class="btn">إرسال طلب الحجز</button>
+        </form>
+    </section>
+
+    <hr>
+
+    <!-- معلومات إضافية -->
+    <section class="info">
+        <h4>معلومات مفيدة</h4>
+        <ul>
+            <li>جميع الدروس عملية ومطابقة لمعايير المرور المحلية.</li>
+            <li>لخدمة استخراج الرخصة سنحتاج نسخ من المستندات: بطاقة الرقم القومي وصور شخصية.</li>
+            <li>بعد إرسال الطلب سيتواصل معك مندوب لتأكيد الموعد والتكلفة.</li>
+        </ul>
+    </section>
+</div>
+{% endblock %}

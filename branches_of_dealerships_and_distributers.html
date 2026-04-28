@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+
+{% block title %}الفروع والوكلاء{% endblock %}
+
+{% block content %}
+<div class="branches-container">
+    <h1>فروع الوكلاء والموزعين</h1>
+    <p>اعثر على أقرب فرع رسمي لخدمة ما بعد البيع أو شراء قطع غيار أو تجربة سيارة.</p>
+
+    <!-- Search / filter (اختياري — لو هتبقى معتمدة على backend) -->
+    <form method="GET" class="branch-search" action="{{ url_for('branches_of_dealerships_and_distributers') }}">
+        <input type="text" name="q" placeholder="ابحث باسم الفرع أو المدينة أو الماركة..." value="{{ request.args.get('q','') }}">
+        <select name="brand">
+            <option value="">كل الماركات</option>
+            <option value="toyota">Toyota</option>
+            <option value="hyundai">Hyundai</option>
+            <option value="bmw">BMW</option>
+            <!-- ضيف ماركات لو حابب -->
+        </select>
+        <button type="submit" class="btn">بحث</button>
+    </form>
+
+    <hr>
+
+    <!-- List of branches (ديناميكي لو في بيانات) -->
+    <div class="branches-list">
+        {% if branches %}
+            {% for branch in branches %}
+            <article class="branch-card">
+                <div class="branch-main">
+                    <h3>{{ branch.name }}</h3>
+                    <p class="meta">
+                        <strong>الماركة:</strong> {{ branch.brand if branch.brand else "متعدد" }} —
+                        <strong>المدينة:</strong> {{ branch.city }}
+                    </p>
+                    <p class="address"><strong>العنوان:</strong> {{ branch.address }}</p>
+                    <p class="contact"><strong>التليفون:</strong> <a href="tel:{{ branch.phone }}">{{ branch.phone }}</a></p>
+                </div>
+
+                <div class="branch-actions">
+                    {% if branch.schedule %}
+                    <p><strong>مواعيد العمل:</strong> {{ branch.schedule }}</p>
+                    {% endif %}
+                    <a class="btn small" href="https://www.google.com/maps/search/{{ branch.address | urlencode }}" target="_blank" rel="noopener">عرض على الخريطة</a>
+                    <a class="btn small" href="tel:{{ branch.phone }}">اتصل الآن</a>
+                </div>
+            </article>
+            {% endfor %}
+        {% else %}
+            <!-- مثال ثابت لو مفيش بيانات من الباك اند -->
+            <article class="branch-card">
+                <div class="branch-main">
+                    <h3>فرع القاهرة - توكيل المركزى</h3>
+                    <p class="meta"><strong>الماركة:</strong> تويوتا — <strong>المدينة:</strong> القاهرة</p>
+                    <p class="address"><strong>العنوان:</strong> 15 شارع النادى، مدينة نصر، القاهرة</p>
+                    <p class="contact"><strong>التليفون:</strong> <a href="tel:0223456789">0223456789</a></p>
+                </div>
+                <div class="branch-actions">
+                    <p><strong>مواعيد العمل:</strong> السبت - الخميس 9:00 - 18:00</p>
+                    <a class="btn small" href="https://www.google.com/maps" target="_blank" rel="noopener">عرض على الخريطة</a>
+                    <a class="btn small" href="tel:0223456789">اتصل الآن</a>
+                </div>
+            </article>
+
+            <article class="branch-card">
+                <div class="branch-main">
+                    <h3>فرع الإسكندرية - الوكيل الإقليمي</h3>
+                    <p class="meta"><strong>الماركة:</strong> هيونداي — <strong>المدينة:</strong> الإسكندرية</p>
+                    <p class="address"><strong>العنوان:</strong> شارع البحر، الإسكندرية</p>
+                    <p class="contact"><strong>التليفون:</strong> <a href="tel:034567890">034567890</a></p>
+                </div>
+                <div class="branch-actions">
+                    <p><strong>مواعيد العمل:</strong> السبت - الخميس 9:00 - 17:00</p>
+                    <a class="btn small" href="https://www.google.com/maps" target="_blank" rel="noopener">عرض على الخريطة</a>
+                    <a class="btn small" href="tel:034567890">اتصل الآن</a>
+                </div>
+            </article>
+        {% endif %}
+    </div>
+
+    <hr>
+
+    <div class="more-info">
+        <h4>نصائح عند زيارة التوكيل</h4>
+        <ul>
+            <li>احجز ميعاد قبل الزيارة لو أمكن لتسهيل الاستقبال.</li>
+            <li>خذ معك بيانات السيارة (اللوحة، رقم الشاسيه إن احتاجوا) ووثائق الملكية.</li>
+            <li>لو كانت الصيانة تحت الضمان، تأكد من وجود كتيب الضمان والأي فواتير سابقة.</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

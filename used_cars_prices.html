@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}Used Cars Prices{% endblock %}
+
+{% block content %}
+<div class="used-cars-container">
+    <h1>أسعار السيارات المستعملة 🚗</h1>
+    <p>استكشف أحدث أسعار السيارات المستعملة حسب الموديل والسنة والحالة.</p>
+
+    <form method="POST" class="search-form">
+        <label for="brand">الماركة:</label>
+        <input type="text" id="brand" name="brand" placeholder="مثال: Toyota">
+
+        <label for="model">الموديل:</label>
+        <input type="text" id="model" name="model" placeholder="مثال: Corolla">
+
+        <label for="year">السنة:</label>
+        <input type="number" id="year" name="year" placeholder="مثال: 2018">
+
+        <button type="submit">عرض الأسعار</button>
+    </form>
+
+    {% if results %}
+    <h2>النتائج:</h2>
+    <table class="results-table">
+        <tr>
+            <th>الماركة</th>
+            <th>الموديل</th>
+            <th>السنة</th>
+            <th>السعر التقريبي</th>
+        </tr>
+        {% for car in results %}
+        <tr>
+            <td>{{ car.brand }}</td>
+            <td>{{ car.model }}</td>
+            <td>{{ car.year }}</td>
+            <td>{{ car.price }} جنيه</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>ابحث عن سيارة لعرض الأسعار.</p>
+    {% endif %}
+</div>
+{% endblock %}
+

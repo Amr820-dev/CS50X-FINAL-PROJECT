@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Auto Market{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Auto Market</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Home</a></li>
+                <li><a href="{{ url_for('new_cars') }}">New Cars</a></li>
+                <li><a href="{{ url_for('used_cars_prices') }}">Used Cars Prices</a></li>
+                <li><a href="{{ url_for('sell_your_car') }}">Sell Your Car</a></li>
+                <li><a href="{{ url_for('service_maintenance') }}">Service & Maintenance</a></li>
+                <li><a href="{{ url_for('branches_of_dealerships_and_distributers') }}">Branches & Dealerships</a></li>
+                <li><a href="{{ url_for('driving_lessons_and_licenses') }}">Driving Lessons & Licenses</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Auto Market. All rights reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+
+</body>
+</html>
+
