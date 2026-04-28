@@ -1,0 +1,79 @@
+/* ========== General Form Page Style ========== */
+.form-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+    text-align: center;
+    color: #0d47a1;
+    margin-bottom: 25px;
+}
+
+/* ========== Form Inputs ========== */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #0d47a1;
+    outline: none;
+}
+
+/* ========== Buttons ========== */
+button, .btn {
+    width: 100%;
+    background-color: #0d47a1;
+    color: #fff;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: #1565c0;
+}
+
+/* ========== Messages & Links ========== */
+.form-note {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 15px;
+}
+
+.form-note a {
+    color: #0d47a1;
+    text-decoration: none;
+}
+
+.form-note a:hover {
+    text-decoration: underline;
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 600px) {
+    .form-container {
+        padding: 20px;
+    }
+}
